@@ -13,9 +13,9 @@ export default function Home() {
                     priority
                 />
                 <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm sm:text-left">
-                    <li className="mb-2">
+                    <li className="font-playfair-display mb-2">
                         Get started by editing{" "}
-                        <code className="rounded bg-black/[.05] px-1 py-0.5 font-semibold dark:bg-white/[.06]">
+                        <code className="font-inter rounded bg-black/[.05] px-1 py-0.5 font-semibold dark:bg-white/[.06]">
                             src/app/page.tsx
                         </code>
                         .

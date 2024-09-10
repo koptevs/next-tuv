@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
     darkMode: ["class"],
@@ -9,6 +10,12 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                geist: ["var(--font-geist-sans)", ...fontFamily.sans],
+                "geist-mono": "var(--font-geist-mono)",
+                inter: ["var(--font-inter)", ...fontFamily.sans],
+                "playfair-display": "var(--font-playfair-display)",
+            },
             colors: {
                 background: "hsl(var(--background))",
                 foreground: "hsl(var(--foreground))",

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -11,6 +13,14 @@ const geistMono = localFont({
     src: "./fonts/GeistMonoVF.woff",
     variable: "--font-geist-mono",
     weight: "100 900",
+});
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter",
+});
+const playfair_display = Playfair_Display({
+    subsets: ["latin"],
+    variable: "--font-playfair-display",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +36,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={cn(
+                    "antialiased",
+                    geistSans.variable,
+                    geistMono.variable,
+                    playfair_display.variable,
+                    inter.variable
+                )}
             >
                 {children}
             </body>
