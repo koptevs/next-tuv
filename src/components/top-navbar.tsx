@@ -16,7 +16,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "./mode-toggler";
-import MobileNav from "./mobile-nav";
+import MobileNav from "./mobile-nav/mobile-nav";
 
 const components: { title: string; href: string; description: string }[] = [
     {

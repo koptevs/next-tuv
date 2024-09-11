@@ -8,11 +8,11 @@ import {
     SheetClose,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 import Link from "next/link";
 import NavContent from "./nav-content";
-import { ModeToggle } from "./mode-toggler";
+import { ModeToggle } from "../mode-toggler";
 
 const MobileNav = () => {
     return (
