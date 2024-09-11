@@ -31,6 +31,8 @@ const config: Config = {
                 "playfair-display": "var(--font-playfair-display)",
             },
             colors: {
+                iky: "var(--iky)",
+                // iky: "hsl(var(--iky))",
                 background: "hsl(var(--background))",
                 foreground: "hsl(var(--foreground))",
                 card: {

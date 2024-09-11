@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { TopNavbar } from "@/components/top-navbar";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -38,7 +39,7 @@ export default function RootLayout({
         <html lang="en" className="light">
             <body
                 className={cn(
-                    "font-inter antialiased dark:bg-slate-900",
+                    "font-inter antialiased",
                     geistSans.variable,
                     geistMono.variable,
                     playfair_display.variable,
@@ -51,6 +52,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
+                    <TopNavbar />
                     {children}
                 </ThemeProvider>
             </body>
