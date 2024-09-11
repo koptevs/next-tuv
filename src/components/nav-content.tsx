@@ -5,7 +5,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { SheetClose } from "@/components/ui/sheet";
 import { Home, Beer, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "./mode-toggler";
 import Link from "next/link";
 
 const NavContent = () => {
@@ -35,7 +34,7 @@ const NavContent = () => {
     ];
     return (
         <div className="mt-8 flex w-full flex-col items-center gap-2">
-            {navLinks.map((item, index) => {
+            {navLinks.map((item) => {
                 const isActive =
                     (pathname.includes(item.path) && item.path.length > 1) ||
                     pathname == item.path;
