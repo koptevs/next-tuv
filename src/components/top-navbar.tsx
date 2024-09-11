@@ -16,6 +16,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "./mode-toggler";
+import MobileNav from "./mobile-nav";
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -59,20 +60,33 @@ export function TopNavbar() {
     return (
         <div className="container ml-auto flex h-[56px] justify-between">
             {/* <div className="flex items-center">LOGO</div> */}
-            <Link href="/" className="flex items-center justify-center gap-2">
+            <Link
+                href="/"
+                className="flex min-w-max items-center justify-center gap-2"
+            >
                 <Image
                     src="/assets/images/site-logo.png"
                     alt="Site Logo"
                     width={20}
                     height={20}
                 />
-                <div className="py-2 font-bold max-sm:hidden">
+                <div className="py-2 font-bold">
                     NEXT-
                     <span className="text-orange-600">TUV</span>
                 </div>
             </Link>
-            <NavigationMenu>
+            <NavigationMenu className="max-sm:hidden">
                 <NavigationMenuList>
+                    {" "}
+                    <NavigationMenuItem>
+                        <Link href="/" legacyBehavior passHref>
+                            <NavigationMenuLink
+                                className={navigationMenuTriggerStyle()}
+                            >
+                                Home
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
                     <NavigationMenuItem>
                         <NavigationMenuTrigger>
                             Getting started
@@ -136,7 +150,7 @@ export function TopNavbar() {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/docs" legacyBehavior passHref>
+                        <Link href="/dashboard" legacyBehavior passHref>
                             <NavigationMenuLink
                                 className={navigationMenuTriggerStyle()}
                             >
@@ -144,10 +158,20 @@ export function TopNavbar() {
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <Link href="/about" legacyBehavior passHref>
+                            <NavigationMenuLink
+                                className={navigationMenuTriggerStyle()}
+                            >
+                                About
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
                 </NavigationMenuList>
-                <div className="ml-4"></div>
+                <div className="ml-8"></div>
                 <ModeToggle />
             </NavigationMenu>
+            <MobileNav />
         </div>
     );
 }

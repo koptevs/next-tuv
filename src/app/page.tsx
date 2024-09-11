@@ -11,10 +11,10 @@ export default function Home() {
                 <ButtonShevronLucide>Shevron</ButtonShevronLucide>
                 <Image
                     className="dark:invert"
-                    src="https://nextjs.org/icons/next.svg"
+                    src="/assets/images/cat_on_window.svg"
                     alt="Next.js logo"
-                    width={180}
-                    height={38}
+                    width={100}
+                    height={100}
                     priority
                 />
                 <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm sm:text-left">
