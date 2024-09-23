@@ -8,7 +8,7 @@ import PostCard from "./card";
 // no-store
 
 async function getData() {
-    const domain = getPublicDomain();
+    const domain = await getPublicDomain();
     const endpoint = `${domain}/api/posts`;
     // const response = await fetch(endpoint, {
     //     next: {
