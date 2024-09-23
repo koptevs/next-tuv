@@ -1,11 +1,49 @@
 "use client";
 
-export default function Form() {
-    const handleForm = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
-        const JSONData = JSON.stringify(data);
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Lock } from "lucide-react";
+
+const formSchema = z.object({
+    // email: z.string().email(),
+    username: z.string().min(2, {
+        message: "Username must be at least 2 characters.",
+    }),
+    password: z.string().min(8, {
+        message: "Password must be at least 8 characters.",
+    }),
+});
+
+export function LinksForm() {
+    // 1. Define your form.
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        mode: "onTouched",
+        defaultValues: {
+            username: "",
+            password: "",
+        },
+    });
+
+    // 2. Define a submit handler.
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        // Do something with the form values.
+        // ✅ This will be type-safe and validated.
+        console.log("Values: ", values);
+        const JSONData = JSON.stringify(values);
         const endpoint = "/api/links/";
 
         const options = {
@@ -17,31 +55,78 @@ export default function Form() {
         };
         const response = await fetch(endpoint, options);
         const result = await response.json();
-        console.log(result);
-    };
+        console.log("Result: ", result);
+    }
     return (
-        <>
-            <form onSubmit={handleForm} className="flex flex-col">
-                <label htmlFor="url">Enter your URL here</label>
-                <input
-                    id="url"
-                    type="text"
-                    name="url"
-                    defaultValue="something.long.com"
-                    className="border-2 p-1"
-                />
-                <label htmlFor="url2">Enter your URL here</label>
-                <input
-                    id="url2"
-                    type="text"
-                    name="url2"
-                    defaultValue="something.long.com"
-                    className="border-2 p-1"
-                />
-                <button className="mt-1 w-24 rounded-sm bg-red-400 p-2 text-white">
-                    Submit
-                </button>
-            </form>
-        </>
+        <div className="flex items-center justify-center">
+            <div className="mt-16 max-w-[500px] rounded-lg border p-4 pb-6 shadow-[0px_0px_20px_-2px_rgba(0,_0,_0,_0.1)]">
+                <div className="flex items-center justify-center space-x-2 py-4 font-bold">
+                    <Lock
+                        size={16}
+                        // color="#34756a"
+                        // color="hsl(var(--destructive))"
+                        strokeWidth={3}
+                        className="inline text-orange-600"
+                    />
+                    <div>
+                        NEXT-
+                        <span className="text-orange-600">TUV</span>
+                    </div>
+                </div>
+                <Form {...form}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="space-y-4"
+                    >
+                        <FormField
+                            control={form.control}
+                            name="username"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Username</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            // placeholder="shadcn"
+                                            {...field}
+                                            className="min-w-[250px] sm:min-w-[400px]"
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        {/* Enter your name. */}
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Password</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            type="password"
+                                            // placeholder="shadcn"
+                                            {...field}
+                                            className="min-w-[250px] sm:min-w-[400px]"
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        {/* Enter your password. */}
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <Button type="submit">
+                            {" "}
+                            {/* disabled={!form.formState.isValid} */}
+                            Submit
+                        </Button>
+                    </form>
+                </Form>
+            </div>
+        </div>
     );
 }
