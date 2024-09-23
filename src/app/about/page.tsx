@@ -2,7 +2,7 @@ import { getDbData } from "@/lib/db";
 import React from "react";
 
 const About = async () => {
-    const [dbData] = await getDbData();
+    const dbData = await getDbData();
     console.log(dbData);
 
     return (
@@ -13,3 +13,4 @@ const About = async () => {
 };
 
 export default About;
+export const runtime = "edge";
