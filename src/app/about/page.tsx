@@ -13,4 +13,6 @@ const About = async () => {
 };
 
 export default About;
+export const revalidate = 10;
 export const runtime = "edge";
+export const preferredRegion = "fra1"; // See Vercel project functions
